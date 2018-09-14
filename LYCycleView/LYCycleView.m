@@ -33,6 +33,7 @@ NSString * const lyCell = @"lyCycleCell";
     _autoScroll = YES;
     _infiniteLoop = YES;
     _touchScroll = YES;
+    _autoScrollTimeInterval = 2.0;
 }
 
 -(void)setupMainView{
@@ -75,6 +76,11 @@ NSString * const lyCell = @"lyCycleCell";
     if (self.datas.count) {
         self.datas = self.datas;
     }
+}
+
+-(void)setAutoScrollTimeInterval:(CGFloat)autoScrollTimeInterval{
+    _autoScrollTimeInterval = autoScrollTimeInterval;
+    [self setAutoScroll:self.autoScroll];
 }
 
 -(void)setTouchScroll:(BOOL)touchScroll{

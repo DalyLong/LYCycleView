@@ -12,7 +12,6 @@
 NSString * const lyCell = @"lyCycleCell";
 
 @interface LYCycleView () <UICollectionViewDelegate,UICollectionViewDataSource>
-@property(nonatomic,strong)NSArray *datas;
 @property (nonatomic, weak) UICollectionView *mainView; // 显示图片的collectionView
 @property (nonatomic, weak) UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic, weak) NSTimer *timer;
@@ -33,6 +32,7 @@ NSString * const lyCell = @"lyCycleCell";
     _autoScroll = YES;
     _infiniteLoop = YES;
     _touchScroll = YES;
+    _autoScrollTimeInterval = 2.0;
 }
 
 -(void)setupMainView{
@@ -80,6 +80,11 @@ NSString * const lyCell = @"lyCycleCell";
 -(void)setTouchScroll:(BOOL)touchScroll{
     _touchScroll = touchScroll;
     _mainView.scrollEnabled = touchScroll;
+}
+
+-(void)setAutoScrollTimeInterval:(CGFloat)autoScrollTimeInterval{
+    _autoScrollTimeInterval = autoScrollTimeInterval;
+    [self setAutoScroll:self.autoScroll];
 }
 
 -(void)setDatas:(NSArray *)datas{
@@ -163,7 +168,7 @@ NSString * const lyCell = @"lyCycleCell";
 
 - (void)setupTimer
 {
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollTimeInterval target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
     _timer = timer;
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }

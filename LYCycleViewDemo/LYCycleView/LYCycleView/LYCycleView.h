@@ -22,6 +22,8 @@
 @property (nonatomic,assign) BOOL infiniteLoop;
 /** 是否支持手动滑动,默认Yes */
 @property (nonatomic,assign) BOOL touchScroll;
+/** 赋值可以实时刷新数据 */
+@property(nonatomic,strong)NSArray *datas;
 
 /**解决viewWillAppear时出现时轮播图卡在一半的问题，在控制器viewWillAppear时调用此方法 */
 - (void)adjustWhenControllerViewWillAppera;
